@@ -29,7 +29,7 @@ def get_nb_diff(no_trial):
     return len([filename for filename in os.listdir('img/diff') if filename.startswith(f"img_{no_trial}")]) - 1
 
 
-class SevenDiff(TaskTemplate):
+class Symetry(TaskTemplate):
     trials = 30  # A CHANGER
     yes_key_name = "p"
     yes_key_code = "p"
@@ -66,5 +66,5 @@ class SevenDiff(TaskTemplate):
                 break
 
 
-exp = SevenDiff(csv_folder="csv")
+exp = Symetry(csv_folder="csv")
 exp.start()
