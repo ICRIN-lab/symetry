@@ -10,7 +10,7 @@ from task_template import TaskTemplate
 
 
 def size(no_trial, j):
-    image = Image.open(f'img/sym/img_{no_trial}_{j}.png')
+    image = Image.open(f'img/img_{no_trial}_{j}.png')
     imgwidth, imgheight = image.size
 
     if imgwidth > get_monitors()[0].width:
@@ -53,9 +53,9 @@ class Symetry(TaskTemplate):
         index_list = [0, 1, 2, 3, 4]
         while True:
             j = index_list.pop(index_list.index(random.choice(index_list)))
-            self.create_visual_image(image=f'img/sym/img_{no_trial}_{j}.png', size=size(no_trial, j)).draw()
+            self.create_visual_image(image=f'img/img_{no_trial}_{j}.png', size=size(no_trial, j)).draw()
             self.win.flip()
-            core.wait(0.5)
+            core.wait(2)
             self.create_visual_text("Les deux barres sont-elles parallèles ? \n\n Non / Oui").draw()
             self.win.flip()
             resp, rt = self.get_response_with_time()
