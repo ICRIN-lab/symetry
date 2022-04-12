@@ -41,9 +41,10 @@ class Symetry(TaskTemplate):
     next = f"Pour passer à l'instruction suivante, appuyez sur la touche {yes_key_name}"
 
     instructions = [
-        f"Dans cette tâche cognitive, appuyez sur la touche '{yes_key_name}' pour répondre oui ou pour selectionner la réponse "
-        f"de droite. \n\n Appuyez sur la touche '{no_key_name}' pour répondre non ou pour selectionner la réponse de "
-        f"gauche."]
+        f"Dans cette tâche cognitive : \n\n - appuyez sur la touche '{yes_key_name}' pour répondre oui ou pour selectionner la réponse "
+        f"de droite. \n\n - appuyez sur la touche '{no_key_name}' pour répondre non ou pour selectionner la réponse de "
+        f"gauche.", "N'appuyez sur les touches que lorsqu'on vous le demande.", "Placez vos index sur les touches 'a' "
+                                                                                "et 'p'."]
 
     csv_headers = ['id_candidate', 'no_trial', 'num_subtrial', 'ans_candidate',
                    'good_ans', 'correct', 'reaction_time', 'time_stamp']
