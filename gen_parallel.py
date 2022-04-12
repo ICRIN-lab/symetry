@@ -11,7 +11,7 @@ for i in range(nb_img):
         img = Image.new(mode="RGB", size=(get_monitors()[0].width, get_monitors()[0].height), color=(0, 0, 0))
         if j == 4:
             angle = randint(0, 180)
-            foreground = Image.open("barre.png").rotate(angle, expand=True)
+            foreground = Image.open("barre.png").rotate(angle, resample=3, expand=True)
             x = randint(0, get_monitors()[0].width - 700)
             y = randint(0, get_monitors()[0].height - 700)
             img.paste(foreground, (x, y),
@@ -25,4 +25,4 @@ for i in range(nb_img):
             y = randint(0, get_monitors()[0].height - 700)
             img.paste(foreground, (x, y), foreground)
             img.paste(foreground, (x + randint(150, 400), y + randint(150, 400)), foreground)
-        img.save(f"img/sym/img_{i}_{j}.png")
+        img.save(f"img/img_{i}_{j}.png")
