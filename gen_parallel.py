@@ -8,7 +8,7 @@ nb_img = 30
 for i in range(nb_img):
     epsilon = randint(3, 5)
     for j in range(5):
-        img = Image.new(mode="RGB", size=(get_monitors()[0].width, get_monitors()[0].height), color=(0, 0, 0))
+        img = Image.new(mode="RGB", size=(get_monitors()[0].width, get_monitors()[0].height), color=(255, 255, 255))
         if j == 4:
             angle = randint(0, 180)
             foreground = Image.open("barre.png").rotate(angle, resample=3, expand=True)
