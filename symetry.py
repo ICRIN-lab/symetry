@@ -14,8 +14,8 @@ class Symetry(TaskTemplate):
     trials = 30
     yes_key_name = "verte"
     yes_key_code = "6"
-    no_key_code = "rouge"
-    no_key_name = "0"
+    no_key_name = "rouge"
+    no_key_code = "0"
     quit_code = "3"
     keys = ["space", yes_key_code, no_key_code, quit_code]
 
@@ -25,7 +25,7 @@ class Symetry(TaskTemplate):
         f"Dans cette expérience : \n\n - appuyez sur la touche '{yes_key_name}' pour répondre oui ou pour "
         f"selectionner la réponse de droite. \n\n - appuyez sur la touche '{no_key_name}' pour répondre non ou pour "
         f"selectionner la réponse de gauche.", "N'appuyez sur les touches que lorsqu'on vous le demande.",
-        "Placez vos index sur les touches 'a' et 'p'."]
+        f"Placez vos index sur les touches {no_key_name} et {yes_key_name}."]
 
     csv_headers = ['id_candidate', 'no_trial', 'num_subtrial', 'ans_candidate',
                    'good_ans', 'correct', 'reaction_time', 'time_stamp']
