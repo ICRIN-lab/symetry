@@ -5,4 +5,4 @@ __pycache__/
 
 #Python and csv files
 csv/*.csv
-task_template.py
+Template_Task_Psychopy/

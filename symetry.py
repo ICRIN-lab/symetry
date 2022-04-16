@@ -2,41 +2,22 @@ import os
 import random
 import time
 
-from PIL import Image
 from psychopy import core
-from screeninfo import get_monitors
-
-from task_template import TaskTemplate
-
-
-def size(no_trial, j):
-    image = Image.open(f'img/img_{no_trial}_{j}.png')
-    imgwidth, imgheight = image.size
-
-    if imgwidth > get_monitors()[0].width:
-        while imgwidth > get_monitors()[0].width:
-            imgwidth = imgwidth * 0.9
-            imgheight = imgheight * 0.9
-    if imgheight > get_monitors()[0].height:
-        while imgheight > get_monitors()[0].height:
-            imgwidth = imgwidth * 0.9
-            imgheight = imgheight * 0.9
-
-    return imgwidth, imgheight
-
-
-def get_nb_diff(no_trial):
-    return len([filename for filename in os.listdir('img/diff') if filename.startswith(f"img_{no_trial}")]) - 1
+from Template_Task_Psychopy.task_template import TaskTemplate
 
 
 class Symetry(TaskTemplate):
-    trials = 30  # A CHANGER
-    yes_key_name = "p"
-    yes_key_code = "p"
-    no_key_code = "a"
-    no_key_name = "a"
-    quit_code = "q"
-    keys = ["space", yes_key_name, no_key_name, quit_code]
+    # IMPORTANT ! To MODIFY IF NEEDED
+    nb_ans = 2
+    response_pad = True  # has to be set on "True" on production.
+    # END OF IMPORTANT
+    trials = 30
+    yes_key_name = "verte"
+    yes_key_code = "6"
+    no_key_code = "rouge"
+    no_key_name = "0"
+    quit_code = "3"
+    keys = ["space", yes_key_code, no_key_code, quit_code]
 
     next = f"Pour passer à l'instruction suivante, appuyez sur la touche {yes_key_name}"
 
@@ -54,15 +35,21 @@ class Symetry(TaskTemplate):
         index_list = [0, 1, 2, 3, 4]
         while True:
             j = index_list.pop(index_list.index(random.choice(index_list)))
-            self.create_visual_image(image=f'img/img_{no_trial}_{j}.png', size=size(no_trial, j)).draw()
+            self.create_visual_image(image=f'img/img_{no_trial}_{j}.png',
+                                     size=self.size(f'img_{no_trial}_{j}.png')).draw()
             self.win.flip()
             core.wait(2)
             self.create_visual_text("Les deux barres sont-elles parallèles ? \n\n Non / Oui").draw()
             self.win.flip()
-            resp, rt = self.get_response_with_time()
-            good_ans = ['p' if j != 4 else 'a'][0]
-            self.update_csv(self.participant, no_trial, j, resp, good_ans, resp == good_ans, round(rt, 2),
-                            round(time.time() - exp_start_timestamp, 2))
+            time_stamp = time.time() - exp_start_timestamp
+            resp, rt = self.get_response_with_time(self.response_pad)
+            good_ans = [self.yes_key_code if j != 4 else self.no_key_code][0]
+            if self.response_pad:
+                self.update_csv(self.participant, no_trial, j, resp, good_ans, resp == good_ans,
+                                round(rt - time_stamp, 2), round(rt, 2))
+            else:
+                self.update_csv(self.participant, no_trial, j, resp, good_ans, resp == good_ans, round(rt, 2),
+                                round(time.time() - exp_start_timestamp, 2))
             if len(index_list) == 0:
                 break
 
