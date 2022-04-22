@@ -24,7 +24,7 @@ class Symetry(TaskTemplate):
     instructions = [
         f"Dans cette expérience : \n\n - appuyez sur la touche '{yes_key_name}' pour répondre oui ou pour "
         f"selectionner la réponse de droite. \n\n - appuyez sur la touche '{no_key_name}' pour répondre non ou pour "
-        f"selectionner la réponse de gauche.", "N'appuyez sur les touches que lorsqu'on vous le demande.",
+        f"selectionner la réponse de gauche.", "N'appuyez sur les touches colorées que lorsque la question apparaît.",
         f"Placez vos index sur les touches {no_key_name} et {yes_key_name}."]
 
     csv_headers = ['id_candidate', 'no_trial', 'num_subtrial', 'ans_candidate',
