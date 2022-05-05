@@ -33,7 +33,7 @@ class Symetry(TaskTemplate):
     csv_headers = ['id_candidate', 'no_trial', 'ans_candidate',
                    'good_ans', 'correct', 'reaction_time', 'time_stamp']
 
-    def task(self, no_trial, exp_start_timestamp, trial_start_timestamp, practice=False, count_image=1):
+    def task(self, no_trial, trial_start_timestamp, practice=False, count_image=1):
         self.create_visual_image(image=f'img/{images[0]}',
                                  size=self.size(images[0])).draw()
         self.win.flip()
@@ -53,7 +53,7 @@ class Symetry(TaskTemplate):
         if self.launch_example:
             return resp == good_ans
 
-    def example(self, exp_start_timestamp):
+    def example(self):
         score_example = 0
         example = self.create_visual_text(text="Commençons par un petit entraînement")
         tutoriel_end = self.create_visual_text(
@@ -62,9 +62,9 @@ class Symetry(TaskTemplate):
         example.draw()
         self.create_visual_text(self.next, pos=(0, -0.4), font_size=0.04).draw()
         self.win.flip()
-        self.wait_yes(self.response_pad)
+        self.wait_yes(self.yes_key_code)
         for u in range(100, 103):
-            if self.task(u, exp_start_timestamp, time.time(), True):
+            if self.task(u, time.time(), True):
                 score_example += 1
                 self.create_visual_text(
                     f"Bravo ! Vous avez {score_example}/{u - 99}"
@@ -85,5 +85,6 @@ class Symetry(TaskTemplate):
         core.wait(5)
 
 
-exp = Symetry(csv_folder="csv")
+exp_start_timestamp = time.time()
+exp = Symetry("csv", exp_start_timestamp)
 exp.start()
