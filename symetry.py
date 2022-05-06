@@ -12,7 +12,7 @@ class Symetry(TaskTemplate):
     nb_ans = 2
     response_pad = True  # has to be set on "True" on production.
     # END OF IMPORTANT
-    trials = 10
+    trials = 100
     yes_key_name = "verte"
     yes_key_code = "6"
     no_key_name = "rouge"
