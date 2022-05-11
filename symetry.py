@@ -10,7 +10,7 @@ from list_images import images
 class Symetry(TaskTemplate):
     # IMPORTANT ! To MODIFY IF NEEDED
     nb_ans = 2
-    response_pad = True  # has to be set on "True" on production.
+    response_pad = False  # has to be set on "True" on production.
     # END OF IMPORTANT
     trials = 100
     yes_key_name = "verte"
@@ -20,6 +20,7 @@ class Symetry(TaskTemplate):
     quit_code = "3"
     keys = ["space", yes_key_code, no_key_code, quit_code]
     launch_example = True
+    exp_start_timestamp = time.time()
 
     next = f"Pour passer à l'instruction suivante, appuyez sur la touche {yes_key_name}"
 
@@ -33,14 +34,14 @@ class Symetry(TaskTemplate):
     csv_headers = ['id_candidate', 'no_trial', 'ans_candidate',
                    'good_ans', 'correct', 'reaction_time', 'time_stamp']
 
-    def task(self, no_trial, trial_start_timestamp, practice=False, count_image=1):
+    def task(self, no_trial):
         self.create_visual_image(image=f'img/{images[0]}',
                                  size=self.size(images[0])).draw()
         self.win.flip()
         core.wait(2)
         self.create_visual_text("Les deux barres sont-elles parallèles ? \n\n Non / Oui").draw()
         self.win.flip()
-        time_stamp = time.time() - exp_start_timestamp
+        time_stamp = time.time() - self.exp_start_timestamp
         resp, rt = self.get_response_with_time(self.response_pad)
         good_ans = [self.yes_key_code if no_trial >= 25 and no_trial != 102 else self.no_key_code][0]
         if self.response_pad:
@@ -48,7 +49,7 @@ class Symetry(TaskTemplate):
                             round(rt - time_stamp, 2), round(rt, 2))
         else:
             self.update_csv(self.participant, no_trial, resp, good_ans, resp == good_ans, round(rt, 2),
-                            round(time.time() - exp_start_timestamp, 2))
+                            round(time.time() - self.exp_start_timestamp, 2))
         images.pop(0)
         if self.launch_example:
             return resp == good_ans
@@ -64,7 +65,7 @@ class Symetry(TaskTemplate):
         self.win.flip()
         self.wait_yes(self.yes_key_code)
         for u in range(100, 103):
-            if self.task(u, time.time(), True):
+            if self.task(u):
                 score_example += 1
                 self.create_visual_text(
                     f"Bravo ! Vous avez {score_example}/{u - 99}"
@@ -85,6 +86,5 @@ class Symetry(TaskTemplate):
         core.wait(5)
 
 
-exp_start_timestamp = time.time()
-exp = Symetry("csv", exp_start_timestamp)
+exp = Symetry("csv")
 exp.start()
