@@ -41,11 +41,10 @@ class Symetry(TaskTemplate):
         core.wait(2)
         self.create_visual_text("Les deux barres sont-elles parallèles ? \n\n Non / Oui").draw()
         self.win.flip()
-        time_stamp = time.time() - self.exp_start_timestamp
+        time_stamp = time.time() - self.response_pad_timestamp
         resp, rt = self.get_response_with_time(self.response_pad)
         good_ans = [self.yes_key_code if int(images[0][images[0].find("_") + 1:images[0].find(".")]) >= 25 and
-                                         int(images[0][images[0].find("_") + 1:images[0].find(".")]) != 102 else
-                    self.no_key_code][0]
+                    int(images[0][images[0].find("_") + 1:images[0].find(".")]) != 102 else self.no_key_code][0]
         if self.response_pad:
             self.update_csv(self.participant, no_trial, resp, good_ans, resp == good_ans,
                             round(rt - time_stamp, 2), round(rt, 2))
