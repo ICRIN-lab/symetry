@@ -7,7 +7,7 @@ from Template_Task_Psychopy.task_template import TaskTemplate
 from list_images import images
 
 
-class Symetry(TaskTemplate):
+class Symmetry(TaskTemplate):
     # IMPORTANT ! To MODIFY IF NEEDED
     nb_ans = 2
     response_pad = True  # has to be set on "True" on production.
@@ -87,5 +87,5 @@ class Symetry(TaskTemplate):
         core.wait(5)
 
 
-exp = Symetry("csv")
+exp = Symmetry("csv")
 exp.start()
