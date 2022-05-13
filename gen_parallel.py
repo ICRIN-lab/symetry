@@ -1,5 +1,5 @@
 # petit code qui génère des barres parallèles
-import random
+
 from PIL import Image, ImageFilter, ImageFont
 from screeninfo import get_monitors
 from random import randint
@@ -16,13 +16,14 @@ for i in range(nb_img):
         x = randint(0, get_monitors()[0].width - 700)
         y = randint(0, get_monitors()[0].height - 700)
         img.paste(foreground, (x, y), foreground)
-        foreground_test = Image.open("barre.png").rotate(angle+epsilon, expand=True)
-        foreground = foreground_test.filter(ImageFilter.SMOOTH_MORE)
+        foreground_before_smoothing = Image.open("barre.png").rotate(angle+epsilon, expand=True)
+        foreground = foreground_before_smoothing.filter(ImageFilter.SMOOTH_MORE)
         img.paste(foreground, (x + randint(150, 400), y + randint(150, 400)),
                   foreground)
 
     else:
-        foreground = Image.open("barre.png").rotate(45, expand=True)
+        foreground_before_smoothing = Image.open("barre.png").rotate(45, expand=True)
+        foreground = foreground_before_smoothing.filter(ImageFilter.SMOOTH_MORE)
         x = randint(0, get_monitors()[0].width - 700)
         y = randint(0, get_monitors()[0].height - 700)
         img.paste(foreground, (x, y), foreground)

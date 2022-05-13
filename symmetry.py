@@ -10,7 +10,7 @@ from list_images import images
 class Symmetry(TaskTemplate):
     # IMPORTANT ! To MODIFY IF NEEDED
     nb_ans = 2
-    response_pad = True  # has to be set on "True" on production.
+    response_pad = False  # has to be set on "True" on production.
     # END OF IMPORTANT
     trials = 100
     yes_key_name = "verte"
