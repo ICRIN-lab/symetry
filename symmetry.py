@@ -32,7 +32,7 @@ class Symmetry(TaskTemplate):
         f"Placez vos index sur les touches {no_key_name} et {yes_key_name}."]
 
     csv_headers = ['id_candidate', 'no_trial', 'ans_candidate',
-                   'good_ans', 'correct', 'reaction_time', 'time_stamp']
+                   'good_ans', 'result', 'reaction_time', 'time_stamp']
 
     def task(self, no_trial):
         self.create_visual_image(image=f'img/{images[0]}',
@@ -46,7 +46,7 @@ class Symmetry(TaskTemplate):
         good_ans = [self.yes_key_code if int(images[0][images[0].find("_") + 1:images[0].find(".")]) >= 25 and
                     int(images[0][images[0].find("_") + 1:images[0].find(".")]) != 102 else self.no_key_code][0]
         if self.response_pad:
-            self.update_csv(self.participant, no_trial, resp, good_ans, resp == good_ans,
+            self.update_csv(self.participant, no_trial, resp, good_ans, int(resp == good_ans),
                             round(rt - time_stamp, 2), round(rt, 2))
         else:
             self.update_csv(self.participant, no_trial, resp, good_ans, int(resp == good_ans), round(rt, 2),
