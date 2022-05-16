@@ -17,7 +17,7 @@ Our research team is studying different aspects of psychiatric disorders. Our pr
 
 ## Symmetry Task
 
-*Symmetry* is a tricky cognitive task where we display an image of two bars and the participant is asked whether the bars are parallel or not.
+*Symmetry* is a tricky cognitive task where we display an image of two bars on a 1920 x 1080 pixels widescreen monitor, and the participant is asked whether the bars are parallel or not.
 Simple, isn't it ? Don't be so confident, we weighed our words before calling it *"tricky"*.
 
 The images are stored in the file "img". 
@@ -88,4 +88,5 @@ Homepage: [iCRIN Lab](http://icrin.fr/)
 ## Contact us
 
 Mail : contact@icrin.fr
+
 Twitter : https://twitter.com/RedwanMaatoug
