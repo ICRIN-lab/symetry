@@ -6,5 +6,6 @@ venv/
 
 #Python and csv files
 csv/*.csv
+csv_eyetracker/*.tsv
 Template_Task_Psychopy
 img_readme
