@@ -1,6 +1,6 @@
 # Symmetry Task 
 
-##CONTENTS OF THIS FILE
+## CONTENTS OF THIS FILE
 
 * Introduction
 * Symmetry Task
@@ -11,11 +11,11 @@
 * Contact
 
 
-##INTRODUCTION
+## INTRODUCTION
 
 Our research team is studying different aspects of psychiatric disorders. Our present project is all about exploring obssessive compulsive disorders' secret garden. For that matter, we designed original home-made cognitive tasks, fresh out of the oven!
 
-##Symmetry Task
+## Symmetry Task
 
 *Symmetry* is a tricky cognitive task where we display an image of two bars and the participant is asked whether the bars are parallel or not.
 Simple, isn't it ? Don't be so confident, we weighed our words before calling it *"tricky"*.
@@ -31,16 +31,16 @@ The task starts with instructions written in french, and are designed for "Track
 The questions are also written in french "Les barres sont elles parallèles" which means "Are the bars parallel?" *in english*.
 
 
-##Task Design example
+## Task Design example
 
 Here is an example of the task. 
 
 ![bars](img/img_readme/barre_readme.png)
 ![question](img/img_readme/qst_sym_readme.png)
 
-##REQUIREMENTS
+## REQUIREMENTS
 
-###Imports :
+### Imports :
 
 We use the package PsychoPy under Python 3.6 to run the tasks. Furthermore, Symmetry Task requires the import of time, as the time spent by the participants is a valuable data.
 ```python
@@ -66,7 +66,7 @@ Here's the <a href="https://github.com/ICRIN-lab/Template_Task_Psychopy.git"> li
 
 
 
-###Specificities :
+### Specificities :
 
 If you want to try this cognitive task using your keyboard, don't forget to the response_pad to False
 
@@ -76,15 +76,15 @@ class Symmetry(TaskTemplate):
     response_pad = False  # has to be set on "True" if a trackpad is used.
 ```
 
-##Contributions
+## Contributions
 
 To contribute, please fork the repository, hack in a feature branch, and send a pull request.
 
-##More informations
+## More informations
 
 Homepage: [iCRIN Lab](http://icrin.fr/)
 
-##Contact us
+## Contact us
 
 Mail : contact@icrin.fr
 Twitter : https://twitter.com/RedwanMaatoug
