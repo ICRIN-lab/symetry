@@ -13,6 +13,7 @@ class Symmetry(TaskTemplate):
     response_pad = True  # has to be set on "True" on production.
     # END OF IMPORTANT
     trials = 100
+    score = 0
     yes_key_name = "verte"
     yes_key_code = "6"
     no_key_name = "rouge"
@@ -32,26 +33,29 @@ class Symmetry(TaskTemplate):
         f"Placez vos index sur les touches {no_key_name} et {yes_key_name}."]
 
     csv_headers = ['id_candidate', 'no_trial', 'ans_candidate',
-                   'good_ans', 'result', 'reaction_time', 'time_stamp']
+                   'good_ans', 'result', 'score', 'reaction_time', 'time_stamp']
 
     def task(self, no_trial):
-        self.create_visual_image(image=f'img/{images[0]}',
-                                 size=self.size(images[0])).draw()
+        self.create_visual_image(image=f'img/{images[no_trial]}',
+                                 size=self.size(images[no_trial])).draw()
         self.win.flip()
-        core.wait(2)
+        core.wait(.1)
         self.create_visual_text("Les deux barres sont-elles parallèles ? \n\n Non / Oui").draw()
         self.win.flip()
         time_stamp = time.time() - self.response_pad_timestamp
         resp, rt = self.get_response_with_time(self.response_pad)
-        good_ans = [self.yes_key_code if int(images[0][images[0].find("_") + 1:images[0].find(".")]) >= 25 and
-                    int(images[0][images[0].find("_") + 1:images[0].find(".")]) != 102 else self.no_key_code][0]
+        good_ans = [self.yes_key_code if int(images[no_trial][images[no_trial].find("_") + 1:images[no_trial].find(".")]) >= 25 and
+                    int(images[no_trial][images[no_trial].find("_") + 1:images[no_trial].find(".")]) != 102 else self.no_key_code][0]
+
+        if resp == good_ans and no_trial < 100:
+            self.score += 1
+
         if self.response_pad:
-            self.update_csv(self.participant, no_trial, resp, good_ans, int(resp == good_ans),
+            self.update_csv(self.participant, no_trial, resp, good_ans, int(resp == good_ans), self.score,
                             round(rt - time_stamp, 2), round(rt, 2))
         else:
-            self.update_csv(self.participant, no_trial, resp, good_ans, int(resp == good_ans), round(rt, 2),
+            self.update_csv(self.participant, no_trial, resp, good_ans, int(resp == good_ans), self.score, round(rt, 2),
                             round(time.time() - self.exp_start_timestamp, 2))
-        images.pop(0)
         if self.launch_example:
             return resp == good_ans
 

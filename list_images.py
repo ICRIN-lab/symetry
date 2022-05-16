@@ -10,5 +10,6 @@ images = ['img_11.png', 'img_29.png', 'img_82.png', 'img_98.png', 'img_26.png', 
           'img_93.png', 'img_67.png', 'img_18.png', 'img_20.png', 'img_87.png', 'img_71.png', 'img_79.png', 'img_97.png',
           'img_42.png', 'img_41.png', 'img_19.png', 'img_91.png', 'img_57.png', 'img_14.png', 'img_78.png', 'img_72.png',
           'img_73.png', 'img_65.png', 'img_99.png', 'img_10.png', 'img_28.png', 'img_36.png', 'img_59.png', 'img_81.png',
-          'img_66.png', 'img_53.png', 'img_22.png', 'img_17.png', 'img_35.png']
+          'img_66.png', 'img_53.png', 'img_22.png', 'img_17.png', 'img_35.png', 'img_100.png', 'img_101.png',
+          'img_102.png']
 
