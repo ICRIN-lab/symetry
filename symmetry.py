@@ -39,7 +39,7 @@ class Symmetry(TaskTemplate):
         self.create_visual_image(image=f'img/{images[no_trial]}',
                                  size=self.size(images[no_trial])).draw()
         self.win.flip()
-        core.wait(.1)
+        core.wait(2)
         self.create_visual_text("Les deux barres sont-elles parallèles ? \n\n Non / Oui").draw()
         self.win.flip()
         time_stamp = time.time() - self.response_pad_timestamp
