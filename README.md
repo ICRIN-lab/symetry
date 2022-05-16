@@ -35,8 +35,9 @@ The questions are also written in french "Les barres sont elles parallèles" whi
 
 Here is an example of the task. 
 
-![bars](img/img_readme/barre_readme.png)
-![question](img/img_readme/qst_sym_readme.png)
+![barres](https://user-images.githubusercontent.com/92592951/168606045-01ce3c6e-7b7e-4635-94b2-4e01ff422234.png)
+
+![question_sym](https://user-images.githubusercontent.com/92592951/168606048-16f813df-97f2-4821-ae1a-e0396b788017.png)
 
 ## REQUIREMENTS
 
