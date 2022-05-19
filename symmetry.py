@@ -38,8 +38,7 @@ class Symmetry(TaskTemplate):
 
     def task(self, no_trial):
         self.create_visual_image(image=f'img/{images[no_trial]}',
-                                 size=(1512,982)).draw()
-        #self.size(images[no_trial])
+                                 size=(1512, 982)).draw()
         self.win.flip()
         core.wait(2)
         self.create_visual_text("Les deux barres sont-elles parallèles ? \n\n Non / Oui").draw()
@@ -48,7 +47,6 @@ class Symmetry(TaskTemplate):
         resp, rt = self.get_response_with_time()
         good_ans = [self.yes_key_code if int(images[no_trial][images[no_trial].find("_") + 1:images[no_trial].find(".")]) >= 25 and
                     int(images[no_trial][images[no_trial].find("_") + 1:images[no_trial].find(".")]) != 102 else self.no_key_code][0]
-
         if resp == good_ans and no_trial < 100:
             self.score += 1
 
