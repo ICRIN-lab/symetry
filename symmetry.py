@@ -12,6 +12,7 @@ class Symmetry(TaskTemplate):
     nb_ans = 2
     response_pad = True  # has to be set on "True" on production.
     eye_tracker_study = True
+
     # END OF IMPORTANT
     trials = 100
     score = 0
@@ -21,7 +22,7 @@ class Symmetry(TaskTemplate):
     no_key_code = "0"
     quit_code = "3"
     keys = ["space", yes_key_code, no_key_code, quit_code]
-    launch_example = True
+    launch_example = False
     exp_start_timestamp = time.time()
 
     next = f"Pour passer à l'instruction suivante, appuyez sur la touche {yes_key_name}"
@@ -40,13 +41,16 @@ class Symmetry(TaskTemplate):
         self.create_visual_image(image=f'img/{images[no_trial]}',
                                  size=(1512, 982)).draw()
         self.win.flip()
+        print("here0.75")
         core.wait(2)
+        print("here1")
         self.create_visual_text("Les deux barres sont-elles parallèles ? \n\n Non / Oui").draw()
         self.win.flip()
+
         time_stamp = time.time() - self.response_pad_timestamp
+
         resp, rt = self.get_response_with_time()
-        good_ans = [self.yes_key_code if int(images[no_trial][images[no_trial].find("_") + 1:images[no_trial].find(".")]) >= 25 and
-                    int(images[no_trial][images[no_trial].find("_") + 1:images[no_trial].find(".")]) != 102 else self.no_key_code][0]
+        good_ans = [self.yes_key_code if int(images[no_trial][images[no_trial].find("_") + 1:images[no_trial].find(".")]) >= 25 and int(images[no_trial][images[no_trial].find("_") + 1:images[no_trial].find(".")]) != 102 else self.no_key_code][0]
         if resp == good_ans and no_trial < 100:
             self.score += 1
 
@@ -56,6 +60,7 @@ class Symmetry(TaskTemplate):
         else:
             self.update_csv(self.participant, no_trial, resp, good_ans, int(resp == good_ans), self.score, round(rt, 2),
                             round(time.time() - self.exp_start_timestamp, 2))
+        self.win.flip()
         if self.launch_example:
             return resp == good_ans
 
