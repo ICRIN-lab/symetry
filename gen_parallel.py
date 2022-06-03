@@ -5,7 +5,6 @@ from screeninfo import get_monitors
 from random import randint
 nb_img = 103
 
-
 for i in range(nb_img):
     print(f"### IMAGE N°{i}")
     epsilon = randint(3, 5)
